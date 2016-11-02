@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE validators PUBLIC
+  		"-//Apache Struts//XWork Validator 1.0.3//EN"
+  		"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+	<validator type="visitor">
+		<param name="fieldName">user</param>
+		<param name="context">UserContext</param> 
+		<param name="appendPrefix">true</param>
+		<message>用户的：</message>
+	</validator>
+</validators>

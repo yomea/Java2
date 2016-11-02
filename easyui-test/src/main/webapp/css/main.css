@@ -1,0 +1,41 @@
+#logo {
+	float: left;
+	font-weight: bold;
+	font-size: 25px;
+	color:white;
+	height:60px;
+	line-height:60px;
+	padding:0 20px;
+	
+}
+
+#options {
+	float: right;
+	height:60px;
+	line-height:60px;
+}
+
+#options a {
+	text-decoration: none;
+	display:line-block;
+	padding:0 20px;
+	cursor:pointer;
+	
+}
+
+#options span {
+	color:white;
+}
+
+#options a:link {
+	color:blue;
+}
+
+#options a:active {
+	color:red;
+}
+
+#options a:hover {
+	text-decoration: underline;
+	color:yellow;
+}

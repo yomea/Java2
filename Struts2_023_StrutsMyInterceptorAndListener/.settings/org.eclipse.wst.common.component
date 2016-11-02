@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="Struts2_004_parameter">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <property name="java-output-path" value="/Struts2_004_parameter/build/classes"/>
+        <property name="context-root" value="Struts2_023_StrutsMyInterceptorAndListener"/>
+    </wb-module>
+</project-modules>

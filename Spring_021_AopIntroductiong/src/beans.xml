@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+	<!-- <context:annotation-config></context:annotation-config> -->
+	<bean id="t" class="youth.hong.TestScope"></bean>	
+	<bean id="log" class="youth.hong.TestAop"></bean><!-- 这个不能使用注解声明，否则报错 -->
+	
+	<aop:config>
+	<aop:aspect ref="log" id="you">
+	<aop:pointcut expression="execution(* youth.hong.TestScope.*st(..))" id="testLog"/>
+		<!-- <aop:before method="log" pointcut-ref="testLog"/>
+		<aop:after method="after" pointcut-ref="testLog"/>
+		<aop:after-returning method="afterReturning" pointcut-ref="testLog" returning="true"/>
+		<aop:after-throwing method="afterThrowException" pointcut-ref="testLog" throwing="exception"/>
+		<aop:around method="round" pointcut-ref="testLog"/>
+		<aop:around method="around" pointcut="execution(* youth.hong.TestScope.advice(String, int)) and args(username, times)"/> -->
+		<aop:declare-parents types-matching="youth.hong.*+" implement-interface="youth.hong.Fit" default-impl="youth.hong.Filter"/>
+	</aop:aspect>	
+	</aop:config>
+	<!-- aop必须是用对象调用的方法才能切面才有用 -->
+  
+</beans>

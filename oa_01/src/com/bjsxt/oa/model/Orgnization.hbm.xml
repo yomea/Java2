@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class table="T_Orgnization" name="com.bjsxt.oa.model.Orgnization">
+    <id name="id">
+      <generator class="native"/>
+    </id>
+    <property name="name"/>
+    <property name="sn"/>
+    <property name="description"/>
+    <many-to-one column="pid" name="parent"/>
+    <set name="children" inverse="true" lazy="extra">
+      <key column="pid"/>
+      <one-to-many class="com.bjsxt.oa.model.Orgnization"/>
+    </set>
+    
+  </class>
+</hibernate-mapping>

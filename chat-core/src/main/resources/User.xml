@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="youth.hong.mapper.IUserMapping">
+
+	<!-- <resultMap type="youth.hong.mybatis.model.User" id="userModel">
+		<id column="ID" javaType="Integer" property="id" />
+		 <result column="username" javaType="String" property="username"/>
+		<result column="age" javaType="integer" property="age"/>
+	</resultMap> -->
+	
+	<resultMap type="youth.hong.bean.User" id="userModel">
+		<constructor>
+			<idArg column="id" javaType="Integer"/>
+			<arg column="name" javaType="String"/>
+			<arg column="password" javaType="String"/>
+		</constructor>
+	</resultMap>
+	
+	<select id="oneUser" resultMap="userModel" parameterType="user">
+		select * from u
+			where name=#{name} and password=#{password}
+		
+	</select>
+	
+	
+</mapper>
+

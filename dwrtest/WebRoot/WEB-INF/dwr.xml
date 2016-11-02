@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+<dwr>
+  <allow>
+  	<!-- 如果是用spring创建的那么应当把new改成spring，class改成beanName -->
+    <create creator="new" javascript="T1">
+      <param name="class" value="com.bjsxt.dwrtest.Test1"/>
+    </create>
+    <create creator="new" javascript="T2">
+      <param name="class" value="com.bjsxt.dwrtest.Test2"/>
+    </create>
+    <create creator="new" javascript="T3">
+      <param name="class" value="com.bjsxt.dwrtest.Test3"/>
+    </create>
+    <create creator="new" javascript="T4">
+      <param name="class" value="com.bjsxt.dwrtest.Test4"/>
+    </create>
+    <create creator="new" javascript="T5">
+      <param name="class" value="com.bjsxt.dwrtest.Test5"/>
+    </create>
+    <create creator="new" javascript="T6">
+      <param name="class" value="com.bjsxt.dwrtest.Test6"/>
+    </create>
+    <create creator="new" javascript="T7">
+      <param name="class" value="com.bjsxt.dwrtest.Test7"/>
+    </create>
+    <create creator="new" javascript="T8">
+      <param name="class" value="com.bjsxt.dwrtest.Test8"/>
+    </create>
+    <create creator="new" javascript="T9">
+      <param name="class" value="com.bjsxt.dwrtest.Test9"/>
+    </create>
+  </allow>
+</dwr>

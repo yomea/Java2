@@ -1,0 +1,8 @@
+<beans>
+	<bean id="u" class="com.bjsxt.dao.impl.UserDAOImpl" />
+	<bean id="userService" class="com.bjsxt.service.UserService" >
+	<!-- userDAO 是UserService的属性，setUserDAO（UserDAO u）bean 是参数 -->
+		<property name="userDAO" bean="u"/>
+	</bean>
+	
+</beans>

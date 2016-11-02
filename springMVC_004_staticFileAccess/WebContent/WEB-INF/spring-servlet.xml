@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<bean name="/youth/hong" class="youth.hong.HelloWorld"></bean>
+	<bean name="/multiple" class="youth.hong.MultiController">
+		<property name="methodNameResolver">
+            <ref bean="paraMethodResolver"/>
+        </property>
+	</bean>
+	
+	<bean name="/img" class="youth.hong.StaticController">
+		<property name="methodNameResolver">
+            <ref bean="paraMethodResolver"/>
+        </property>
+	</bean>
+	<bean id="paraMethodResolver"
+		class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+		<property name="paramName">
+			<!-- 传参时的参数名http://localhost:8888/springMVC_003_multiple/multiple?action=update -->
+			<value>action</value>
+		</property>
+		<property name="defaultMethodName">
+			<value>img</value>
+		</property>
+	</bean>
+	<!-- 告知静态文件不要拦截，直接访问 -->
+	<mvc:resources location="/image/" mapping="/dog/image/**"></mvc:resources>
+
+	<bean id="internalResourceViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+</beans>

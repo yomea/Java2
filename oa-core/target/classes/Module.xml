@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="youth.hong.dao.ModuleDao">
+
+
+	<insert id="addModule" parameterType="youth.hong.dto.Module">
+		insert into t_module(name, sn, url, orderNo, parent_id)
+		values(#{name}, #{sn}, #{url}, #{orderNo}, #{parent_id})
+	</insert>
+
+	<!-- 即使Module中没有对应的属性如：pid它也不报错，只是默默的赋值null -->
+	<select id="findModule" parameterType="int" resultType="Module">
+		select
+		o1.id,
+		o1.name,
+		o1.sn,
+		o1.url,
+		o1.orderNo,
+		o2.id "parent.id",
+		o2.name "parent.name",
+		o2.sn "parent.sn",
+		o2.url "parent.url",
+		o1.orderNo "parent.orderNo"
+		from t_module o1 inner join t_module o2 on o1.parent_id = o2.id where
+		o1.id = #{id}
+	</select>
+
+
+	<select id="searchModules" resultType="Module">
+		select
+		o1.id,
+		o1.name,
+		o1.sn,
+		o1.url,
+		o1.orderNo,
+		o2.id "parent.id",
+		o2.name "parent.name",
+		o2.sn "parent.sn",
+		o2.url "parent.url",
+		o1.orderNo "parent.orderNo"
+		from t_module o1 left join t_module o2 on o1.parent_id = o2.id where o1.parent_id = #{id} order by o1.parent_id desc limit
+		#{startIndex}, #{offset} 
+	</select>
+	<!-- 最好使用包装类，如果没有值返回将返回一个null值，但int值不能接受null值，会报错 -->
+	<select id="getPid" resultType="Integer">
+		select 
+		parent_id
+		from t_module 
+		<where>
+			<if test="_parameter !=null">
+				and id = #{_parameter}
+			</if>
+		</where>
+	</select>
+
+	<select id="getTotalRecords" resultType="int" parameterType="java.lang.Integer">
+		select count(id) from t_module
+		<where>
+			<if test="_parameter != null">
+				and parent_id = #{_parameter}
+			</if>
+		</where>
+	</select>
+
+	<delete id="delOrgnization">
+		delete from t_module where id = #{id}
+	</delete>
+
+	<update id="updateOrgnization">
+		update t_module set name = #{name}, sn = #{sn}, url = #{url}, orderNo = #{orderNo},
+		parent_id = #{pid}
+		where id = #{id}
+	</update>
+
+</mapper>

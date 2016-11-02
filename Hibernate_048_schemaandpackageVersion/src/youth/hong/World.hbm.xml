@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-4-23 20:42:03 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping schema="schema2">
+    <class name="youth.hong.World" table="World">
+    	<composite-id name="worldPK" class="youth.hong.WorldPK">
+    		<key-property name="id"></key-property>
+    		<key-property name="name"></key-property>
+    		
+    	</composite-id>
+    	<!-- unsave_update 设置未保存时的version的值，使用saveorupdate时如果当前的值是null的话调用save方法 -->
+       <version name="version" column="VERSION" unsaved-value="null"></version>
+       
+       <set name="hellos" table="hello" cascade="all" inverse="true">
+       	<key>
+       		<column name="nameId"></column>
+       		<column name="worldId"></column>
+       	</key>
+       	
+       	
+       	<one-to-many class="youth.hong.Hello" />
+       	
+       </set>
+    </class>
+</hibernate-mapping>

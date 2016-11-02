@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+ 	<package name="youth" namespace="/path" extends="struts-default">
+ 	<!-- 当输入不存在的action名时它会自动匹配test -->
+ 	<default-action-ref name="test"></default-action-ref>
+     	<action name="test" class="youth.hong.TeacherAction4" method="add">
+            <result name="success">
+                /getRequestSessionApplication.jsp
+            </result>
+           
+        </action>
+        
+     
+    </package>
+</struts>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="youth.hong.mybatis.model.User">
+
+	<!-- <resultMap type="youth.hong.mybatis.model.User" id="userModel">
+		<id column="ID" javaType="Integer" property="id" />
+		 <result column="username" javaType="String" property="username"/>
+		<result column="age" javaType="integer" property="age"/>
+	</resultMap> -->
+	
+	<resultMap type="youth.hong.mybatis.model.User" id="userModel">
+		<constructor>
+			<idArg column="id" javaType="Integer"/>
+			<arg column="username" javaType="String"/>
+			<arg column="age" javaType="Integer"/>
+		</constructor>
+	</resultMap>
+	
+	<insert id="add" parameterType="user">
+		insert into t_user values
+		(#{id},#{username},#{age})
+	</insert>
+	
+	<select id="list" resultMap="userModel" parameterType="user">
+		select * from t_user
+		<if test="username != null and !&quot;&quot;.equals(username.trim())">
+			where username like '%' #{username} '%'
+		</if>
+		
+	</select>
+	
+	
+</mapper>
+

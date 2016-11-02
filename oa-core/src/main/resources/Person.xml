@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="youth.hong.dao.SuccessSeckillDao">
+  	<insert id="insertSuccessKill">
+  		insert ignore into success_seckill(seckill_id,user_phone,state) values(#{seckillId},#{userPhone},0)
+  	</insert>
+  	
+  	<select id="queryByIdWithSeckill" parameterType="long" resultType="SuccessSeckill">
+  		select 
+  			p.id,
+  			p.name,
+  			p.sex,
+  			p.address,
+  			p.duty,
+  			p.phone,
+  			p.description,
+  			o.id "org.id",
+  			o.name "org.name",
+  			o.sn "org.sn",
+  		
+  		from t_person as p inner join t_orgnization as o on p.org_id = o.id
+  		
+  		where p.id = #{id}
+  		
+  	</select>
+  
+  </mapper>

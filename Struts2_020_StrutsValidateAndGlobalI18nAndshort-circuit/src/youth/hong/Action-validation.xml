@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE validators PUBLIC
+  		"-//Apache Struts//XWork Validator 1.0.3//EN"
+  		"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+	<!-- 非字段校验器，优先级高于所有字段校验器 -->
+	<validator type="requiredstring" short-circuit="false"><!-- 短路校验器 -->
+		<param name="fieldName">username</param>
+		<param name="trim">true</param>
+		<message>${getText('pass.username')}</message>
+	</validator>
+	<!-- 字段校验器 -->
+	<field name="password">
+		<field-validator type="requiredstring"><!-- 更多的校验器请参考书籍struts权威指南P170 -->
+			<param name="trim">true</param>
+			<message>${getText('pass.username')}</message>
+		</field-validator>
+		<field-validator type="fieldexpression"><!-- 更多的校验器请参考书籍struts权威指南P170 -->
+			<param name="trim">true</param>
+			<param name="expression"><![CDATA[(username == password)]]></param>
+			<message>${getText('pass.username')}</message>
+			<!-- <message key="pass.username" /> -->
+		</field-validator>
+	</field>
+	<field name="age">
+		<field-validator type="conversion">
+			<message>请输入1~10的数字</message>
+		</field-validator>
+		<field-validator type="int">
+			<param name="min">1</param><!-- 将参数传给校验器 -->
+			<param name="max">10</param>
+			<message>${min}~~~${max}</message><!-- 使用${} 可以取到它值 -->
+		</field-validator>
+	</field>
+</validators>

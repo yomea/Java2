@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-4-23 20:42:03 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping schema="schema1" package="youth.hong">
+    <class name="Hello" table="Hello" schema="schema2">
+    	<id name="id">
+    		
+			<generator class="native"></generator>
+    	</id>
+    	
+       
+       <property name="nam" access="field" type="java.lang.String"><!-- <property name="name"不写字段默认与name的值一样 -->
+            <column name="NAM"/>
+        </property> 
+        
+        <!-- <property name="avg" formula="select id from user where id=id">
+        </property> -->
+        
+        <many-to-one name="world" class="youth.hong.World">
+        	<column name="nameId" ></column>
+        	<column name="worldId"></column>
+        </many-to-one>
+        
+    </class>
+</hibernate-mapping>

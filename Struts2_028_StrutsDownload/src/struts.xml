@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <!-- 动态地调用方法打开 -->
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.i18n.encoding" value="utf-8"></constant>
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
+    <constant name="struts.custom.i18n.resources" value="global"></constant>
+    
+   
+ 
+     <package name="youth" namespace="/" extends="struts-default">
+     
+     	
+     	<action name="download" class="youth.hong.Action">
+     		<result name="success" type="stream">
+     			<param name="contentType">${contentType}</param>
+     			<param name="inputName">${getInputStream}</param>
+     			<param name="contentDisposition">filename="${fileName}"</param>
+     			<param name="bufferSize">800000000000000</param>
+     		</result>
+     	</action>
+   
+    </package>
+    
+    
+    <!-- Add packages here -->
+
+</struts>

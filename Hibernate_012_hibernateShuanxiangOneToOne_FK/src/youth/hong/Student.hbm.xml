@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-4-23 20:42:03 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="youth.hong.Student" table="STUDENT">
+        <id name="id" type="java.lang.Integer">
+        	<column name="id"></column>
+        	<generator class="native"></generator>
+        </id>
+         <property name="name" type="java.lang.String"><!-- <property name="name"不写字段默认与name的值一样 -->
+            <column name="NAME" />
+        </property> 
+        <!-- <one-to-one class="youth.hong.StudentIdCard" name="studentIdCard" property-ref="student"></one-to-one> -->
+        <one-to-one name="studentIdCard" property-ref="student"></one-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE validators PUBLIC
+  		"-//Apache Struts//XWork Validator 1.0.3//EN"
+  		"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+	<!-- Action-方法名-validation,指定对哪个方法做校验 -->
+	<!-- 这个校验器和Action-validation两个校验器的综合约束 -->
+	<!-- 另一种情况，就是出现action的继承时，它有个搜索规则，具体查看笔记或书本 -->
+	<validator type="requiredstring" short-circuit="false">
+		<param name="fieldName">username</param>
+		<param name="trim">true</param>
+		<!-- 从国际化文件中取得出错的提示 -->
+		<message>${getText('pass.username')}</message>
+	</validator>
+	<field name="password">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>${getText('pass.username')}</message>
+		</field-validator>
+	</field>
+</validators>

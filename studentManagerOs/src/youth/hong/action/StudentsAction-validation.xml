@@ -1,0 +1,26 @@
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.2//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+
+<validators>
+	<field name="sid">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>学号不能为空</message>
+		</field-validator>
+
+		<field-validator type="regex">
+			<param name="regex"><![CDATA[(\w{5,})]]></param>
+			<message>输入的内容必须是字母或者是数字，且至少5个</message>
+		</field-validator>
+	</field>
+	<field name="sname">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>姓名不能为空</message>
+		</field-validator>
+
+	</field>
+
+
+</validators>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process-definition name="文档测试流程">
+   <start-state name="开始">
+      <transition name="提交张三审批" to="张三审批"></transition>
+   </start-state>
+   <task-node name="张三审批">
+      <task name="审批1">
+      	<assignment actor-id="张三"/>
+      </task>
+      <transition name="提交李四审批" to="李四审批"></transition>
+   </task-node>
+   <task-node name="李四审批">
+      <task name="审批2">
+      	<assignment actor-id="李四"/>
+      </task>
+      <transition name="提交王五审批" to="王五审批"></transition>
+   </task-node>
+   <task-node name="王五审批">
+      <task name="审批3">
+      	<assignment actor-id="王五"/>
+      </task>
+      <transition name="结束流程" to="结束"></transition>
+   </task-node>
+   <end-state name="结束"></end-state>
+</process-definition>

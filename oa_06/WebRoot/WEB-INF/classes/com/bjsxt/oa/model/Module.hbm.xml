@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class table="T_Module" name="com.bjsxt.oa.model.Module">
+    <id name="id">
+      <generator class="native"/>
+    </id>
+    <property name="name" not-null="true" unique="true"/>
+    <property name="sn" not-null="true" unique="true"/>
+    <property name="url"/>
+    <property name="orderNo"/>
+    <many-to-one column="parentId" name="parent"/>
+    <set lazy="extra" inverse="true" name="children" order-by="orderNo">
+      <key column="parentId"/>
+      <one-to-many class="com.bjsxt.oa.model.Module"/>
+    </set>
+  </class>
+</hibernate-mapping>

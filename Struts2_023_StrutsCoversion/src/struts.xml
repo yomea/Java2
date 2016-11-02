@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <!-- 动态地调用方法打开 -->
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.i18n.encoding" value="utf-8"></constant>
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
+    
+   
+ 
+     <package name="youth" namespace="/" extends="struts-default">
+     	<action name="test" class="youth.hong.Action">
+     		<result name="success">/test.jsp</result> 
+     		<result name="input">/test.jsp</result> 
+     		
+   		</action>
+    </package>
+    
+    
+    <!-- Add packages here -->
+
+</struts>

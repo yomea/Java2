@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="youth.hong.GroupDao">
+
+	<resultMap type="youth.hong.Group" id="group">
+		<id column="gid" property="id" />
+		<result column="level" property="level" />
+		<collection property="students" resultMap="student">
+		</collection>
+		<!-- <collection property="students" ofType="youth.hong.Student">
+			<id column="tid" property="id" />
+			<result column="name" property="name" />
+		</collection> -->
+	</resultMap>
+
+	<resultMap type="youth.hong.Student" id="student">
+		<id column="tid" property="id" />
+		<result column="name" property="name" />
+	</resultMap>
+
+	<sql id="gain">
+		g.id as gid, g.level, t.id as tid, t.name
+	</sql>
+
+	<select id="query" parameterType="int" resultMap="group">
+		select
+		<include refid="gain" />
+		from t_group as g inner join t_student as t on g.id = t.groupId
+
+		where
+		g.id = #{gid}
+
+	</select>
+
+</mapper>

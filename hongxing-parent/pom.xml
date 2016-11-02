@@ -1,0 +1,236 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.yeame.maven_006</groupId>
+	<artifactId>hongxing-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+
+	<modules>
+		<module>
+  		../hongxing-bge
+  	</module>
+		<module>
+  		../hongxing-nange
+  	</module>
+		<module>
+  		../hongxing-shanjige
+  	</module>
+	</modules>
+
+	<name>hongxing-parent</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<junit.version>3.8.1</junit.version>
+		<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+		<jdbc.url>jdbc:mysql://localhost:3306</jdbc.url>
+		<jdbc.username>root</jdbc.username>
+		<jdbc.password>root</jdbc.password>
+	</properties>
+	<!-- 发布仓库，不过发布时需要认证，所有需要在maven的setting.xml中配置角色认证 -->
+	<distributionManagement>
+		<repository>
+			<id>nexusRelease</id>
+			<name>nexus Release</name>
+			<url>http://localhost:8081/nexus/content/repositories/cms-release/</url>
+		</repository>
+
+		<snapshotRepository>
+			<id>nexusSnapshot</id>
+			<name>nexus Snapshot</name>
+			<url>http://localhost:8081/nexus/content/repositories/cms-snapshot/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	<!-- jar包由这些仓库上下载，在maven的setting.xml中也可以配置这些，配置在profile中，而且还要激活 -->
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<name>nexus repository</name>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<url>http://localhost:8081/nexus/content/repositories/central/</url>
+		</repository>
+	</repositories>
+	<!--插件由这些仓库上下载，在maven的setting.xml中也可以配置这些，配置在profile中，而且还要激活 -->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus-plugin</id>
+			<name>nexus plugin</name>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<url>http://localhost:8081/nexus/content/repositories/central/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.6</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- 为了消除Junit统计率的错误信息的插件 -->
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>sql-maven-plugin</artifactId>
+										<versionRange>[1.5,)</versionRange>
+										<goals>
+											<goal>execute</goal>
+
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+				<!-- 数据库插件，它的用法在maven的官网可以查到 -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>sql-maven-plugin</artifactId>
+					<version>1.5</version>
+
+					<dependencies>
+						<!-- http://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+						<dependency>
+							<groupId>mysql</groupId>
+							<artifactId>mysql-connector-java</artifactId>
+							<version>5.1.38</version>
+						</dependency>
+
+					</dependencies>
+					<!-- 配置数据库属性 -->
+					<!-- common configuration shared by all executions -->
+					<configuration>
+						<driver>${jdbc.driver}</driver>
+						<url>${jdbc.url}</url>
+						<username>${jdbc.username}</username>
+						<password>${jdbc.password}</password>
+					</configuration>
+
+					<executions>
+						<execution>
+							<id>create-db</id>
+							<!-- 执行的阶段 -->
+							<phase>compile</phase>
+							<goals>
+								<goal>execute</goal>
+							</goals>
+							<configuration>
+								<!-- need another database to drop the targeted one -->
+								<!-- <url>jdbc:postgressql://localhost:5432:bootstrapdb</url> <autocommit>true</autocommit> 
+									<sqlCommand>drop database yourdb</sqlCommand> -->
+								<sqlCommand>create database if not exists maven</sqlCommand>
+								<!-- ignore error when database is not avaiable -->
+							</configuration>
+						</execution>
+
+						<execution>
+							<id>create-table</id>
+							<phase>test-compile</phase>
+							<goals>
+								<goal>execute</goal>
+							</goals>
+							<configuration>
+								<srcFiles>
+									<srcFile>src/main/resources/sql.sql</srcFile>
+								</srcFiles>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-rar-plugin</artifactId>
+					<version>2.4</version>
+					<configuration>
+						<includeJar>true</includeJar>
+					</configuration>
+
+					<executions>
+						<execution>
+							<phase>package</phase>
+							<goals>
+								<goal>rar</goal>
+							</goals>
+						</execution>
+
+					</executions>
+				</plugin>
+				<!-- Junit测试文件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.19.1</version>
+
+
+				</plugin>
+				<!-- 统计junit测试的覆盖率 -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>cobertura-maven-plugin</artifactId>
+					<version>2.6</version>
+					<configuration>
+						<formats>
+							<format>html</format>
+							<format>xml</format>
+						</formats>
+					</configuration>
+					<executions>
+						<execution>
+							<phase>test</phase>
+							<goals>
+								<goal>cobertura</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.5.1</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+
+</project>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-4-23 20:42:03 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="youth.hong.Student" table="STUDENT">
+        <id name="id" type="int"><!-- <id name="id" />默认是字段一样为id -->
+            <column name="ID" />
+            <!-- <generator class="assigned" /> -->
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String"><!-- <property name="name"不写字段默认与name的值一样 -->
+            <column name="NAME" />
+        </property>
+        <property name="age" type="int">
+            <column name="age" />
+        </property>
+    </class>
+</hibernate-mapping>

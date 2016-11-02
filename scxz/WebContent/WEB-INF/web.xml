@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>scxz</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+  	<servlet-name>upload</servlet-name>
+  	<servlet-class>youth.hong.Upload</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>upload</servlet-name>
+  	<url-pattern>/upload</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>download</servlet-name>
+  	<servlet-class>youth.hong.Download</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>download</servlet-name>
+  	<url-pattern>/download</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>SUpload</servlet-name>
+  	<servlet-class>youth.hong.SUpload</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>SUpload</servlet-name>
+  	<url-pattern>/SUpload</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>BatchDownload</servlet-name>
+  	<servlet-class>youth.hong.BatchDownload</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>BatchDownload</servlet-name>
+  	<url-pattern>/BatchDownload</url-pattern>
+  </servlet-mapping>
+</web-app>

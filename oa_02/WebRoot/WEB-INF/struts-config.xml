@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="orgForm" type="com.bjsxt.oa.web.forms.OrgActionForm"></form-bean>
+	</form-beans>
+	<global-exceptions>
+		<exception 
+			key="errors.detail" 
+			type="java.lang.Exception"
+			path="/common/exception.jsp"
+			scope="request"
+			handler="com.bjsxt.oa.web.SystemExceptionHandler"
+		></exception>
+	</global-exceptions>
+	<global-forwards>
+		<forward name="pub_add_success" path="/common/pub_add_success.jsp"></forward>
+		<forward name="pub_update_success" path="/common/pub_update_success.jsp"></forward>
+		<forward name="pub_del_success" path="/common/pub_del_success.jsp"></forward>
+	</global-forwards>
+	<action-mappings>
+		<action 
+			path="/org"
+			type="org.springframework.web.struts.DelegatingActionProxy"
+			name="orgForm"
+			scope="request"
+			parameter="method"
+		>
+			<forward name="index" path="/org/index.jsp"></forward>
+			<forward name="add_input" path="/org/add_input.jsp"/>
+		</action>
+	</action-mappings>
+    <message-resources parameter="MessageResources" />
+</struts-config>
+

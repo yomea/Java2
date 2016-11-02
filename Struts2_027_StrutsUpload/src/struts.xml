@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <!-- 动态地调用方法打开 -->
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.i18n.encoding" value="utf-8"></constant>
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
+    <constant name="struts.custom.i18n.resources" value="global"></constant>
+    
+   
+ 
+     <package name="youth" namespace="/" extends="struts-default">
+     
+     	
+     	<action name="test" class="youth.hong.Action">
+     		<interceptor-ref name="defaultStack"></interceptor-ref>
+     		<interceptor-ref name="fileUpload">
+     			<param name="allowedTypes">image/jpeg,image/jpg,image/bmp,image/png</param>
+     			<param name="maxSize">200000000000000</param><!-- 单位字节 -->
+     		</interceptor-ref>
+     		<param name="savePath">/upload</param>
+     		<param name="allowTypes">image/jpeg,image/jpg,image/bmp,image/png</param>
+     		<result name="success">/success.jsp</result>
+     		<result name="input">/test.jsp</result>
+
+     	</action>
+   
+    </package>
+    
+    
+    <!-- Add packages here -->
+
+</struts>

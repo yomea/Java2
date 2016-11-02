@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+    <package name="default" namespace="/" extends="struts-default">
+    	<action name="cktest" class="com.imooc.action.CkAction">
+    		<result>show.jsp</result>
+    	</action>
+    	
+    	<action name="download" class="com.imooc.action.FileDownloadAction">
+				<param name="inputPath">/images/img2-lg.jpg</param>
+				<result name="success" type="stream">
+					<param name="contentType">application/octet-stream</param>
+					<param name="inputName">inputStream</param>
+					<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+					<param name="bufferSize">8192</param>
+				</result>
+			</action>
+    </package>
+
+
+</struts>

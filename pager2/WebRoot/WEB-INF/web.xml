@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>pager2</display-name>
+  <filter>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>com.imooc.page.EncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>EncodingFilter</filter-name>
+    <url-pattern>*</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <servlet-name>SublistServlet</servlet-name>
+    <servlet-class>com.imooc.page.servlet.SublistServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SublistServlet</servlet-name>
+    <url-pattern>/sublist/SublistServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>JdbcSqlServlet</servlet-name>
+    <servlet-class>com.imooc.page.servlet.JdbcSqlServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JdbcSqlServlet</servlet-name>
+    <url-pattern>/jdbcSql/JdbcSqlServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>HibernateServlet</servlet-name>
+    <servlet-class>com.imooc.page.servlet.HibernateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HibernateServlet</servlet-name>
+    <url-pattern>/hibernate/HibernateServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>HibernateDataServlet</servlet-name>
+    <servlet-class>com.imooc.page.servlet.HibernateDataServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HibernateDataServlet</servlet-name>
+    <url-pattern>/hibernate/HibernateDataServlet</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-4-23 20:42:03 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="youth.hong.World" table="World">
+    	<composite-id name="worldPK" class="youth.hong.WorldPK">
+    		<key-property name="id"></key-property>
+    		<key-property name="name"></key-property>
+    	</composite-id>
+    	
+       
+       
+       <set name="hellos" table="hello" cascade="save-update" inverse="true">
+       	<key>
+       		<column name="nameId"></column>
+       		<column name="worldId"></column>
+       	</key>
+       	<one-to-many class="youth.hong.Hello" />
+       	
+       </set>
+    </class>
+</hibernate-mapping>

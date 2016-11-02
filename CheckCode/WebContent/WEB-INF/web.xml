@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>CheckCode</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+  	<servlet-name>ImageCreate</servlet-name>
+  	<servlet-class>youth.hong.ImageCreate</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ImageCreate</servlet-name>
+  	<url-pattern>/servlet/ImageCreate</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>CheckInfo</servlet-name>
+  	<servlet-class>youth.hong.CheckInfo</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>CheckInfo</servlet-name>
+  	<url-pattern>/CheckInfo</url-pattern>
+  </servlet-mapping>
+</web-app>

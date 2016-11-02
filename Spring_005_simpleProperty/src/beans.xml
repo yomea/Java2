@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- id与name属性差不多，只是name指定的可以包含特殊字符 -->
+    <bean name="u" class="com.bjsxt.dao.impl.UserDAOImpl">
+        <!-- collaborators and configuration for this bean go here -->
+    </bean>
+
+    <bean id="userService" class="com.bjsxt.service.UserService">
+    	<!-- setter方式注入 -->
+    	<property name="id" value="1" />
+    	<property name="name" value="out" />
+       <!--  <property name="userDAO" ref="u"/> -->
+        <!-- <property name="userDAO">
+        	<ref bean="u"/>
+        </property> -->
+        <constructor-arg>
+        <!-- <bean class="com.bjsxt.dao.impl.UserDAOImpl"></bean> -->
+         	<ref bean="u" />
+        </constructor-arg>
+    </bean>
+
+    <!-- more bean definitions go here -->
+
+</beans>

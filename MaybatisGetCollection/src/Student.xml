@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="youth.hong.StudentDao">
+
+	<resultMap type="youth.hong.Student" id="student">
+		<id column="sid" property="id" />
+		<result column="sname" property="name" />
+		<association property="group" javaType="youth.hong.Group">
+			<id column="gid" property="id" />
+			<result column="level" />
+		</association>
+		<collection property="book" ofType="youth.hong.Book">
+			<id column="bid" property="id" />
+			<result column="bname" property="name" />
+		</collection>
+		<collection property="books" ofType="java.util.HashMap" >
+		
+		</collection>
+	</resultMap>
+
+
+	<select id="query" parameterType="int" resultMap="student">
+		select
+		s.id as
+		sid,
+		s.name as sname,
+		g.id as gid,
+		g.level,
+		b.id as bid,
+		b.key_name,
+		b.name
+		as bname
+		from t_student as s
+		inner join t_group as g on g.id = s.groupId
+		inner
+		join student_book as
+		sb on sb.s_id = s.id inner join t_book as b
+		on
+		b.id = sb.b_id
+		where
+		s.id
+		= #{id}
+
+	</select>
+
+</mapper>
