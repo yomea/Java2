@@ -22,6 +22,7 @@
 		<aop:after-throwing method="afterThrowException" pointcut-ref="testLog" throwing="exception"/>
 		<aop:around method="round" pointcut-ref="testLog"/>
 		<aop:around method="around" pointcut="execution(* youth.hong.TestScope.advice(String, int)) and args(username, times)"/> -->
+		<!-- 给youth.hong下的类动态添加父类，它的父类为youth.hong.Fit接口，而它的实现的方法被同一指定为youth.hong.Filter中的实现方式 -->
 		<aop:declare-parents types-matching="youth.hong.*+" implement-interface="youth.hong.Fit" default-impl="youth.hong.Filter"/>
 	</aop:aspect>	
 	</aop:config>
