@@ -28,13 +28,13 @@ public class UserController {
 	//http://localhost:8888/springMVC_016_springmvcWebDateBinding/adduser?user2.username=22&admin.username=bb&user2.address.address=BeiJing
 	//http://localhost:8888/springMVC_016_springmvcWebDateBinding/adduser?user2.words=1&user2.words=2&user2.words=3
 	//http://localhost:8888/springMVC_016_springmvcWebDateBinding/adduser?user2.words[0]=1&user2.words[1]=2&user2.words[20]=3
-	//用于传参是的加前缀
-	@InitBinder("user")//类名首字母小写
+	//鐢ㄤ簬浼犲弬鏄殑鍔犲墠缂�
+	@InitBinder("user")//鍜屽弬鏁板悕鏈夊叧锛屽鏋滃弬鏁板悕鏄繛缁ぇ鍐欏瓧绗︼紝閭ｄ箞淇濇寔涓嶅彉锛屽鏋滃叾浠栫殑浼氭妸绗竴涓瓧姣嶅彉鎴愬皬鍐欙紝闆嗗悎绫荤殑閮芥槸娉涘瀷绫诲瀷锛屽悗闈㈠啀鍔犱釜鈥渓ist鈥濆瓧绗︿覆
 	public void initBinderUser(WebDataBinder wb) {
 		wb.setFieldDefaultPrefix("user2.");
 	}
 	
-	@InitBinder("admin")//类名首字母小写
+	@InitBinder("admin")//鍜屽弬鏁板悕鏈夊叧
 	public void initBinderAdmin(WebDataBinder wb) {
 		wb.setFieldDefaultPrefix("admin.");
 	}
